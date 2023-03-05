@@ -34,6 +34,16 @@ const Home = (props) =>
             {
                 console.log('userdata',user.data)
                 setUserData(user.data)
+                const obj = {
+                    name:user.data.name,
+                    email:user.data.email,
+                    degree:user.data.degree,
+                    occupation:user.data.occupation,
+                    maritalStatus:user.data.maritalStatus,
+                    homeTown:user.data.homeTown,
+                    state:user.data.state
+                }
+                setUserInfo(obj)
             })
             .catch((err) => 
             {
@@ -70,32 +80,49 @@ const Home = (props) =>
         }       
     },[searchObj])
 
-    useEffect(() => 
+    // useEffect(() => 
+    // {
+    //     axios.get("http://localhost:3050/api/app1/get-user-info",{
+    //         headers:{
+    //             "Authorization":`${localStorage.getItem("token")}`
+    //         }
+    //     })
+    //     .then((ele) => 
+    //     {
+    //         console.log("showInfo",ele.data)
+    //         const obj = {
+    //             name:ele.data.name,
+    //             email:ele.data.email,
+    //             degree:ele.data.degree,
+    //             occupation:ele.data.occupation,
+    //             maritalStatus:ele.data.maritalStatus,
+    //             homeTown:ele.data.homeTown,
+    //             state:ele.data.state
+    //         }
+    //         setUserInfo(obj)
+    //     })
+    //     .catch((err) => 
+    //     {
+    //         console.log(err)
+    //     })
+    // },[showToggle])
+
+    const updateUser = (data) => 
     {
-        axios.get("http://localhost:3050/api/app1/get-user-info",{
-            headers:{
-                "Authorization":`${localStorage.getItem("token")}`
-            }
-        })
-        .then((ele) => 
-        {
-            console.log("showInfo",ele.data)
-            const obj = {
-                name:ele.data.name,
-                email:ele.data.email,
-                degree:ele.data.degree,
-                occupation:ele.data.occupation,
-                maritalStatus:ele.data.maritalStatus,
-                homeTown:ele.data.homeTown,
-                state:ele.data.state
-            }
-            setUserInfo(obj)
-        })
-        .catch((err) => 
-        {
-            console.log(err)
-        })
-    },[showToggle])
+        console.log('added-data',data)
+        const input = {...userData,...data}
+        setUserData(input)
+        const filteredInput = {
+            name:input.name,
+            email:input.email,
+            degree:input.degree,
+            occupation:input.occupation,
+            maritalStatus:input.maritalStatus,
+            homeTown:input.homeTown,
+            state:input.state
+        }
+        setUserInfo(filteredInput)
+    }
 
     const modalToggle = () => 
     {
@@ -186,13 +213,12 @@ const Home = (props) =>
                 <div className='searchErr'>{(Object.keys(searchErr).length >0) && (searchErr.message)}</div>
                 <input type="submit" value='search' className={`searchStyle btn btn-primary`}/>
             </form>
-            {(addInfoToggle)  && (<UserInfo addInfoToggle={addInfoToggle} modalToggle={modalToggle}/>)}
+            {(addInfoToggle)  && (<UserInfo addInfoToggle={addInfoToggle} modalToggle={modalToggle} updateUser={updateUser}/>)}
             {(showToggle) &&
             (<ShowInfo toggleShowInfo={toggleShowInfo} showToggle={showToggle} userInfo={userInfo}/>)}
             {(userSearchToggle) && 
             (<ShowSearch searchUserToggle={searchUserToggle} userSearchToggle={userSearchToggle}
-            searchedUser={searchedUser}/>)}
-            
+            searchedUser={searchedUser}/>)}            
         </div>
         
        

@@ -3,11 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from "axios";
+import swal from 'sweetalert2'
+import {withRouter} from 'react-router-dom'
 
 const UserInfo = (props) => 
 {
     // const [show,setShow] = useState(false)
-    const {addInfoToggle,modalToggle} = props
+    const {addInfoToggle,modalToggle,updateUser} = props
     const [degree,setDegree] = useState("")
     const [occupation,setOccupation] = useState("")
     const [maritalStatus,setMaritalStatus] = useState("")
@@ -30,6 +32,14 @@ const UserInfo = (props) =>
                 .then((user) => 
                 {
                     console.log("userInfo",user.data)
+                    if(user.data.hasOwnProperty("_id"))
+                    {
+                        swal.fire({
+                            title:"Successfully updated record"
+                        })
+                        updateUser(user.data)
+                        modalToggle()
+                    }
                 })
                 .catch((err) => 
                 {
@@ -157,4 +167,4 @@ const UserInfo = (props) =>
         </div>
     )
 }
-export default UserInfo
+export default withRouter(UserInfo)

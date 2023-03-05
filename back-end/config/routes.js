@@ -9,6 +9,8 @@ router.post("/api/app1/login",userController.login)
 router.get("/api/app1/user",userAuthenticate,userController.show)
 router.put("/api/app1/add-user-info",userAuthenticate,userController.update)
 router.get("/api/app1/get-user-info",userAuthenticate,userController.display)
+router.get("/api/app1/showAll",userController.showAll)
+router.delete("/api/app1/delete-user/:id",userController.destroy)
 router.get("/api/app1/search-email/:email",userController.search)
 
 router.get("/api/app1/email-search/:email",userController.searchUser)

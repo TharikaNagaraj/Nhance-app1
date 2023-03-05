@@ -1,4 +1,4 @@
-const User = require("../models/userModel")
+const UserOne = require("../models/userModel")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const axios = require("axios")
@@ -8,30 +8,46 @@ const userController = {}
 userController.register = (req,res) => 
 {
     const body = req.body
-    const user = new User(body)
-    bcrypt.genSalt()
-        .then((salt) => 
+    UserOne.findOne({"email":body.email})
+        .then((user) => 
         {
-            bcrypt.hash(user.password,salt)
-                .then((encryptedPassword) => 
-                {
-                    user.password = encryptedPassword
-                    user.save()
-                        .then((user) => 
-                        {
-                            res.json(user)
-                        })
-                        .catch((err) => 
-                        {
-                            res.json(err)
-                        })
-                })
+            if(!user)
+            {
+                const user = new UserOne(body)
+                bcrypt.genSalt()
+                    .then((salt) => 
+                    {
+                        bcrypt.hash(user.password,salt)
+                            .then((encryptedPassword) => 
+                            {
+                                user.password = encryptedPassword
+                                user.save()
+                                    .then((user) => 
+                                    {
+                                        res.json(user)
+                                    })
+                                    .catch((err) => 
+                                    {
+                                        res.json(err)
+                                    })
+                            })
+                    })
+            }
+            else
+            {
+                res.json("User already exists")
+            }
         })
+        .catch((err) => 
+        {
+            console.log(err)
+        })
+    
 }
 userController.login = (req,res) => 
 {
     const body = req.body
-    User.findOne({"email":body.email})
+    UserOne.findOne({"email":body.email})
         .then((user) => 
         {
             if(!user)
@@ -74,7 +90,7 @@ userController.login = (req,res) =>
 userController.show = (req,res) => 
 {
     const id = req.user.id
-    User.findById(id)
+    UserOne.findById(id)
         .then((user) => 
         {
             res.json(user)
@@ -88,7 +104,7 @@ userController.update = (req,res) =>
 {
     const id = req.user.id
     const body = req.body
-    User.findByIdAndUpdate(id,body,{new:true})
+    UserOne.findByIdAndUpdate(id,body,{new:true})
         .then((user) => 
         {
             res.json(user)
@@ -101,10 +117,35 @@ userController.update = (req,res) =>
 userController.display = (req,res) => 
 {
     const id = req.user.id
-    User.findById(id)
+    UserOne.findById(id)
         .then((ele) => 
         {
             res.json(ele)
+        })
+        .catch((err) => 
+        {
+            res.json(err)
+        })
+}
+userController.showAll = (req,res) => 
+{
+    UserOne.find()
+        .then((users) => 
+        {
+            res.json(users)
+        })
+        .catch((err) => 
+        {
+            res.json(err)
+        })
+}
+userController.destroy = (req,res) => 
+{
+    const id = req.params.id
+    UserOne.findByIdAndDelete(id)
+        .then((user) => 
+        {
+            res.json(user)
         })
         .catch((err) => 
         {
@@ -128,7 +169,7 @@ userController.search = (req,res) =>
 userController.searchUser = (req,res) => 
 {
    const email = req.params.email
-   User.find({"email":email})
+   UserOne.find({"email":email})
         .then((user) => 
         {
             res.json(user)
