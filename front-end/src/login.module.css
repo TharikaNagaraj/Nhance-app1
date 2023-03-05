@@ -1,0 +1,44 @@
+.login{
+    margin-top: 100px;
+    margin-left: 675px;
+    margin-bottom: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:darkorange;
+}
+.email{
+    margin-left:600px ;
+    max-width: 250px;
+    margin-bottom: 25px;
+}
+.pwd{
+    margin-left: 600px;
+    max-width: 250px;
+}
+.signup{
+    margin-top: 5px;
+    margin-left: 650px;
+    color:cornflowerblue;
+    font-style: italic;
+    font-size:smaller;
+}
+.app1{
+    margin-top: 50px;
+    margin-left: 645px;
+    color: darkorange;
+}
+.submit{
+    margin-top: 25px;
+    margin-left: 640px;
+}
+.cancelStyle{
+    margin-left: 5px;
+    margin-top: 25px;
+}
+.emailSpan{
+    margin-left: 640px;
+    color:red;
+}
+.pwdSpan{
+    margin-left: 640px;
+    color: red;
+}

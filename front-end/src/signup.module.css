@@ -1,0 +1,55 @@
+.register{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: larger;
+    margin-top: 50px;
+    margin-left: 50px;
+    color: darkorange;
+}
+.name{
+    margin-top: 25px;
+    margin-left: 50px;
+    color: darkorange;
+}
+.nameText{
+    max-width: 500px;
+    margin-left: 50px;
+}
+.email{
+    margin-top: 5px;
+    margin-left: 50px;
+    color: darkorange;
+}
+.emailText{
+    margin-left: 50px;
+    max-width: 500px;
+}
+.password{
+    margin-top: 5px;
+    margin-left: 50px;
+    color: darkorange;
+}
+.passwordText {
+    margin-left: 50px;
+    max-width: 500px;
+   
+}
+.btn{
+    margin-top: 25px;
+    margin-left: 50px;
+}
+.btnBack{
+    margin-top: 25px;
+    margin-left: 8px;
+}
+.nameError{
+    margin-left: 50px;
+    color:black
+}
+.emailError{
+    margin-left: 50px;
+    color: black;
+}
+.pwdError{
+    margin-left: 50px;
+    color: black;
+}

@@ -1,0 +1,48 @@
+.bg-navStyle{
+    background-color:darkorange;
+    height: 50px;
+}
+.home{
+    margin-left: 100px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.logout{
+    margin-left: 1200px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.application1{
+    margin-left: 650px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:x-large;
+    font-weight: 200;
+}
+.labelStyle{
+    margin-top: 25px;
+    margin-left: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:large;
+    font-weight:bold;  
+}
+.addStyle{
+   margin-top: 60px;
+   margin-left: 25px;
+}
+.showStyle{
+    margin-top:65px ;
+    margin-left: 25px;
+}
+
+.searchTextStyle{
+    max-width: 250px;
+    margin-left: 1250px;
+    margin-top: -150px;
+}
+.searchStyle{
+    margin-left: 1250px;
+    margin-top: 25px;
+}
+.searchErr{
+    margin-left: 1260px;
+    color: red;
+
+}
